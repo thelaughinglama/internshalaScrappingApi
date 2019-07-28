@@ -29,7 +29,7 @@ async function hello() {
         console.log(`https://internshala.com${links[i]}`)
 
 
-        await sleep(2000)
+        await sleep(100)
         var options1 = {
             uri: `https://internshala.com${links[i]}`,
             transform: function (body) {
