@@ -11,10 +11,10 @@ var options = {
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-hello().catch((err) => {
+dataRetriever().catch((err) => {
     console.log(err)
 });
-async function hello() {
+async function dataRetriever() {
     var $ = await rp(options);
     var count = 0;
     $('.individual_internship').each(async function () {
