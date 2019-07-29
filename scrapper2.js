@@ -14,12 +14,15 @@ var options = {
     },
 
 };
+//sleep funtion to delay the execution of next request
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
 dataRetriever().catch((err) => {
     console.log(err)
 });
+// executes multiple requests to each of the  internship links 
 async function dataRetriever() {
     var $ = await rp(options);
     var count = 0;
@@ -27,15 +30,17 @@ async function dataRetriever() {
 
 
         var link = $(this).children('.button_container').children('a').attr('href');
-        links.push(link)
+        links.push(link) //making array of all the  internship links on the page 
         count++;
     }
     )
+    //sending requests on all the links 
     for (i = 0; i < count; i++) {
         console.log(`https://internshala.com${links[i]}`)
 
 
-        await sleep(100)
+        await sleep(100) //delay of 0.1sec with each request 
+        //request execution
         var options1 = {
             uri: `https://internshala.com${links[i]}`,
             transform: function (body) {
@@ -43,8 +48,8 @@ async function dataRetriever() {
             },
 
         }
-        await rp(options1).then(async (selector) => {
-            var res = selector('#skillsContainer').text()
+        await rp(options1).then(async ($) => {
+            var res = $('#skillsContainer').text() 
             console.log(res)
         }).catch((err) => {
             console.log(err);
