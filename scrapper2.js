@@ -1,8 +1,14 @@
 const cheerio = require('cheerio');
 const rp = require('request-promise');
+const arg = process.argv.slice(2);
+if (arg.length != 1) {
+    console.log('Enter url correctly');
+    console.log('Example: node scrapper2.js https://internshala.com/internships/xyz');
+    process.exit();
+}
 var links = [];
 var options = {
-    uri: 'https://internshala.com/internships/work-from-home-computer%20science-jobs-in-delhi/duration-4',
+    uri: arg[0],
     transform: function (body) {
         return cheerio.load(body);
     },
@@ -44,6 +50,6 @@ async function dataRetriever() {
             console.log(err);
         });
     }
-   console.log(count);
+    console.log(count);
 }
 
