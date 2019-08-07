@@ -50,7 +50,9 @@ async function dataRetriever() {
         }
         await rp(options1).then(async ($) => {
             var res = $('#skillsContainer').text() 
+            var res1 = $('.stipend_container_table_cell').text()
             console.log(res)
+            console.log("Stipend : " + res1)            
         }).catch((err) => {
             console.log(err);
         });
